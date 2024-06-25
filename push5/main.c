@@ -80,13 +80,13 @@ void drawMap(char **map, int width, int height, Player *player) {
             } else if (map[y][x] == '#') {
                 printf("\033[30m#\033[0m");
             } else if (map[y][x] == '2') {
-                printf("\033[33m|\033[0m");
+                printf("\033[30m|\033[0m");
             } else if (map[y][x] == '3') {
-                printf("\033[33m-\033[0m");
+                printf("\033[30m-\033[0m");
             } else if (map[y][x] == '7') {
-                printf("\033[33m]\033[0m");
+                printf("\033[30m]\033[0m");
             } else if (map[y][x] == '6') {
-                printf("\033[33m[\033[0m");
+                printf("\033[30m[\033[0m");
             } else if (map[y][x] == 'B') {
                 printf("\033[34mB\033[0m");
             } else if (map[y][x] == '5') {
