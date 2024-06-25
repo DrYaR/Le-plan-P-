@@ -102,7 +102,9 @@ void drawMap(char **map, int width, int height, Player *player) {
             } else if (map[y][x] == 'b') {
                 printf("\033[40m \033[0m");
             } else if (map[y][x] == 'c') {
-                printf(" ");             
+                printf(" ");
+            } else if (map[y][x] == 'o') {
+                printf("H");              
             } else {
                 printf("%c", map[y][x]);
             }
@@ -241,7 +243,7 @@ int main() {
                     loadMapFromFile(map, width, height, filename, &player);
                 } else if (map[player.y][player.x] == 'B') {
                     displayFridgeMenu(&player);
-                } else if (map[player.y][player.x] == 'H') {
+                } else if (map[player.y][player.x] == 'o') {
                     pcMenu(&player);
                 }
             }
