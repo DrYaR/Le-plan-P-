@@ -119,7 +119,7 @@ void drawMap(char **map, int width, int height, Player *player) {
         if (y == startY) printf("   Energy: %s%.1f%s", (player->energy < 10 ? "\033[31m" : ""), player->energy, (player->energy < 10 ? "\033[0m" : ""));
         if (y == startY + 1) printf("   Hunger: %s%.1f%s", (player->hunger < 10 ? "\033[31m" : ""), player->hunger, (player->hunger < 10 ? "\033[0m" : ""));
         if (y == startY + 2) printf("   Mental: %s%.1f%s", (player->mental < 10 ? "\033[31m" : ""), player->mental, (player->mental < 10 ? "\033[0m" : ""));
-        if (y == startY + 3) printf("   Days: %s%d%s", (player->Days < 5 ? "\033[31m" : ""), player->Days, (player->Days < 5 ? "\033[0m" : ""));
+        if (y == startY + 3) printf("   Days: %s%d%s", (player->Days > 25 ? "\033[31m" : ""), player->Days, (player->Days > 25 ? "\033[0m" : ""));
         if (y == startY + 4) printf("   Time: %s%d%s", (player->hour > 23 ? "\033[31m" : ""), player->hour, (player->hour > 23 ? "\033[0m" : ""));
         if (y == startY + 4) {
             char buffer[3];
@@ -235,7 +235,7 @@ int main() {
         map[i] = (char *)malloc(width * sizeof(char));
     }
 
-    Player player = {1, 1, 100.0, 100.0, 95.0, 27, 10, 0};
+    Player player = {1, 1, 100.0, 100.0, 95.0, 1, 23, 50};
 
     snprintf(filename, sizeof(filename), "map%d.txt", currentMap + 1);
     loadMapFromFile(map, width, height, filename, &player);
@@ -263,7 +263,7 @@ int main() {
             if (read(STDIN_FILENO, &command, 1) == 1) {
                 if (command == 'q') break;
                 if (map[player.y][player.x] == 'c') {
-                    if (player.Days ==0) {
+                    if (player.Days >= 28) {
                         printf("GAME OVER");
                         return 0;
                     }
@@ -272,10 +272,12 @@ int main() {
                     if (player.mental >= MAX_STAT) {player.mental = MAX_STAT;}
                     else if (player.mental < 0) {player.mental = 0;}
                     else {player.mental += 5.0;}
-                    player.Days -= 1;
+                    if (player.hour >= 1){
+                        player.Days += 1;
+                    }
                     player.y -=4;
-                    player.hour == 9;
-                    player.min == 0;
+                    player.hour = 9;
+                    player.min = 0;
 
                 };
 
@@ -306,7 +308,7 @@ int main() {
             else {player.hour += 1;
             player.min = 0;}
             if (player.hour == 23 && player.min == 59) {
-                player.Days -= 1;
+                player.Days += 1;
                 player.hour = 0;
                 player.min = 0;
             }
