@@ -146,8 +146,8 @@ int pcMenu(Player *player) {
         return 0;}    
     
     printf("\nChoose task for now:\n");
-    printf("1. Today's task (-15 energy, -10 mental)\n");
-    printf("2. Listen to the lecture (-5 energy, -3 mantal)\n");
+    printf("1. Today's task (-15 energy, -3 mental)\n");
+    printf("2. Listen to the lecture (-5 energy, -1 mantal)\n");
 
 
 
@@ -230,7 +230,7 @@ int main() {
                     }
                     player.energy = 100.0;
                     player.hunger = 100.0;
-                    player.mental = 100.0;
+                    player.mental += 5.0;
                     player.Days -= 1;
                     player.y -=4;
                 };
