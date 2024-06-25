@@ -104,7 +104,9 @@ void drawMap(char **map, int width, int height, Player *player) {
             } else if (map[y][x] == 'c') {
                 printf(" ");
             } else if (map[y][x] == 'o') {
-                printf("H");              
+                printf("H");
+            } else if (map[y][x] == 'd') {
+                printf(" ");              
             } else {
                 printf("%c", map[y][x]);
             }
@@ -118,19 +120,16 @@ void drawMap(char **map, int width, int height, Player *player) {
 }
 
 void displayFridgeMenu(Player *player) {
-    printf("\nChoose food from the fridge:\n");
-    printf("1. Apple (+2 hunger)\n");
-    printf("2. Pizza (+3 hunger)\n");
-    //printf("3. Rotten egg (?????)\n");
+    printf("\nВыбери еду из холодильника:\n");
+    printf("1. Яблоко (+2 hunger)\n");
+    printf("2. Пицца (+3 hunger)\n");
 
     char choice = getchar();
     if (choice == '1') {
         player->hunger += 2;
     } else if (choice == '2') {
         player->hunger += 3;
-    } //else if (choice == '3') {
-        //player->hunger -= 10;
-    //}
+    }
 
     if (player->hunger > MAX_STAT) player->hunger = MAX_STAT;
     if (player->hunger < 0) player->hunger = 0;
@@ -146,8 +145,8 @@ int pcMenu(Player *player) {
         return 0;}    
     
     printf("\nChoose task for now:\n");
-    printf("1. Today's task (-15 energy, -3 mental)\n");
-    printf("2. Listen to the lecture (-5 energy, -1 mantal)\n");
+    printf("1. Сегодняшний проект (-15 energy, -3 mental)\n");
+    printf("2. Послушать лекцию (-5 energy, -1 mantal)\n");
 
 
 
@@ -155,7 +154,7 @@ int pcMenu(Player *player) {
     char choice = getchar();
     if (choice == '1') {
         player->energy -= 10;
-        player->mental -= 5;
+        player->mental -= 1 + rand() % 5;
     } else if (choice == '2') {
         player->energy -= 4;
         player->mental -= 2;
@@ -167,11 +166,17 @@ int pcMenu(Player *player) {
 void movePlayer(Player *player, char direction, int width, int height, char **map) {
     int newX = player->x;
     int newY = player->y;
-
+if (player->mental >= 15){
     if (direction == 'w') newY--;
     if (direction == 's') newY++;
     if (direction == 'a') newX--;
     if (direction == 'd') newX++;
+} else {
+    if (direction == 'w') newY++;
+    if (direction == 's') newY--;
+    if (direction == 'a') newX++;
+    if (direction == 'd') newX--;
+}
 
     if (newX >= 0 && newX < width && newY >= 0 && newY < height && map[newY][newX] != '1' && map[newY][newX] != '2' && map[newY][newX] != '3' && map[newY][newX] != '4' && map[newY][newX] != '5' && map[newY][newX] != '7' && map[newY][newX] != '6' && map[newY][newX] != '#' && map[newY][newX] != '8' && map[newY][newX] != 'b' ) {
         player->x = newX;
@@ -196,7 +201,7 @@ int main() {
         map[i] = (char *)malloc(width * sizeof(char));
     }
 
-    Player player = {1, 1, 100.0, 100.0, 100.0, 27};
+    Player player = {1, 1, 100.0, 100.0, 95.0, 27};
 
     snprintf(filename, sizeof(filename), "map%d.txt", currentMap + 1);
     loadMapFromFile(map, width, height, filename, &player);
@@ -230,7 +235,9 @@ int main() {
                     }
                     player.energy = 100.0;
                     player.hunger = 100.0;
-                    player.mental += 5.0;
+                    if (player.mental >= MAX_STAT) {player.mental = MAX_STAT;}
+                    else if (player.mental < 0) {player.mental = 0;}
+                    else {player.mental += 5.0;}
                     player.Days -= 1;
                     player.y -=4;
                 };
@@ -251,12 +258,11 @@ int main() {
 
         long currentTime = getTimeInMilliseconds();
         if (currentTime - lastUpdateTime >= 1000) {
-            if ((player.energy <= 0.0) || (player.hunger <= 0.0) || (player.mental <= 0.0)){
+            if ((player.energy <= 0.0) || (player.hunger <= 0.0)){
                 printf("GAME OVER\n");
                 break;}
-            player.energy -= 0.1;
+            player.energy -= 0.02;
             player.hunger -= 0.1;
-            player.mental -= 0.1;
             lastUpdateTime = currentTime;
         }
     }
