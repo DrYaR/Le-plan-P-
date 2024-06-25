@@ -119,7 +119,7 @@ void drawMap(char **map, int width, int height, Player *player) {
         if (y == startY) printf("   Energy: %s%.1f%s", (player->energy < 10 ? "\033[31m" : ""), player->energy, (player->energy < 10 ? "\033[0m" : ""));
         if (y == startY + 1) printf("   Hunger: %s%.1f%s", (player->hunger < 10 ? "\033[31m" : ""), player->hunger, (player->hunger < 10 ? "\033[0m" : ""));
         if (y == startY + 2) printf("   Mental: %s%.1f%s", (player->mental < 10 ? "\033[31m" : ""), player->mental, (player->mental < 10 ? "\033[0m" : ""));
-        if (y == startY + 3) printf("   Days: %s%d%s", (player->Days > 25 ? "\033[31m" : ""), player->Days, (player->Days > 25 ? "\033[0m" : ""));
+        if (y == startY + 3) printf("   Day %s%d%s", (player->Days > 25 ? "\033[31m" : ""), player->Days, (player->Days > 25 ? "\033[0m" : ""));
         if (y == startY + 4) printf("   Time: %s%d%s", (player->hour > 23 ? "\033[31m" : ""), player->hour, (player->hour > 23 ? "\033[0m" : ""));
         if (y == startY + 4) {
             char buffer[3];
@@ -130,6 +130,7 @@ void drawMap(char **map, int width, int height, Player *player) {
     }
 }
 
+// холодильник
 void displayFridgeMenu(Player *player) {
     const char *foodNames[] = {"Яблоко", "Пицца", "Суп", "Салат"};
     const int foodValues[] = {2, 3, 1, 1};
@@ -235,7 +236,7 @@ int main() {
         map[i] = (char *)malloc(width * sizeof(char));
     }
 
-    Player player = {1, 1, 100.0, 100.0, 95.0, 1, 23, 50};
+    Player player = {1, 1, 100.0, 100.0, 95.0, 1, 9, 00};
 
     snprintf(filename, sizeof(filename), "map%d.txt", currentMap + 1);
     loadMapFromFile(map, width, height, filename, &player);
