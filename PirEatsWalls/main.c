@@ -336,7 +336,7 @@ void movePlusSymbols(char **map, int width, int height) {
                     newY += dy;
                  }
                  // prevent moving through '#', "|", "_"
-                 if (newX >= 0 && newX < width && newY >= 0 && newY < height && map[newY][newX] != '#' && map[newY][newX] != '|' && map[newY][newX] != '_') {
+                 if (newX >= 0 && newX < width && newY >= 0 && newY < height && map[newY][newX] == ' ' ) {
                      map[y][x] = ' ';
                      map[newY][newX] = '+';
                 }
