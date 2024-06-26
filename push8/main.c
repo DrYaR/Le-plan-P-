@@ -163,24 +163,19 @@ void drawMap(char **map, int width, int height, Player *player) {
 void displayFridgeMenu(Player *player) {
     const char *foodNames[] = {"Яблоко", "Пицца", "Суп", "Салат"};
     const int foodValues[] = {2, 3, 1, 1};
-    const char *foodActions[] = {"Яблоко", "Пицца", "Суп", "Салат"};
-    const int foodCount = sizeof(foodNames) / sizeof(foodNames[0]);
 
     printf("\nВыбери еду из холодильника:\n");
-    for (int i = 0; i < foodCount; i++) {
+    for (int i = 0; i < sizeof(foodNames) / sizeof(foodNames[0]); i++) {
         printf("%d. %s (+%d Сытость)\n", i + 1, foodNames[i], foodValues[i]);
     }
-    printf("\nВведите номер пункта для его активации: ");
+
     char choiceStr[2];
     scanf("%1s", choiceStr);
     int choice = atoi(choiceStr);
-    if (choice > 0 && choice <= foodCount) {
-        printf("Вы выбрали: %s\n", foodActions[choice - 1]);
+    if (choice > 0 && choice <= sizeof(foodNames) / sizeof(foodNames[0])) {
         player->hunger += foodValues[choice - 1];
+        if (player->hunger > MAX_STAT) player->hunger = MAX_STAT;
     }
-
-    if (player->hunger > MAX_STAT) player->hunger = MAX_STAT;
-    if (player->hunger < 0) player->hunger = 0;
 }
 
 ///КОМП///
@@ -192,9 +187,6 @@ int pcMenu(Player *player) {
     printf("\nChoose task for now:\n");
     printf("1. Сегодняшний проект (-4 Часа, -15 Энергия, -3 Менталочка)\n");
     printf("2. Послушать лекцию (-5 Энергия, -1 Менталочка)\n");
-
-
-
 
     char choice = getchar();
     if (choice == '1') {
