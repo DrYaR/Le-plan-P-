@@ -50,8 +50,8 @@ a1             11             11             1#        d       #                
 a1 o         o7             o71            111#                #HHH              p##HHH   |            #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa55aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a1             11             11         1 aaa#                #333  33            #3333               #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa55aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a1        1    11           aaaaaaaaa        1#                #  H   |         ####HHH                #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-a1             11 11          aaaaaaa        1#      EXIT      #333      ########     #33   33       ######aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazzzzzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-a16o                    o7116o  aaaaaa o71    ######cccccc######HHH   |     #aaaa#aa#HHH   |            #aaaaaaaaaaaaaaaaaaaaazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a1             11 11          aaaaaaa        1#                #333      ########     #33   33       ######aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazzzzzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a16o                    o7116o  aaaaaa o71    ##################HHH   |     #aaaa#aa#HHH   |            #aaaaaaaaaaaaaaaaaaaaazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a1zzzzz                 zzzz  11aaaaaa       1aaaaabbbbbbbbaaaa#############aaaa########################aaaaaaaaaaaaaaaaaaaaaaaaaaaaazzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a1 1           11     1 aaa   11   aaaaaaaaaa11111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a1  1          1              aaaaaaaaaaa    1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

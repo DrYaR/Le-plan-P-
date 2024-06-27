@@ -173,25 +173,29 @@ void drawMap(char **map, int width, int height, Player *player) {
 int displayFridgeMenu(Player *player) {
 
     printf("\nВыбери еду:\n");
-    printf("1. Яблоко (+5 Энергия)\n");
-    printf("2. Пицца (+7 Энергия)\n");
-    printf("3. Суп (+12 Энергия)\n");
-    printf("4. Салат (+7 Энергия)\n");
+    printf("1. Яблоко (+5 Сытость)\n");
+    printf("2. Пицца (+7 Сытость)\n");
+    printf("3. Суп (+12 Сытость)\n");
+    printf("4. Салат (+7 Сытость)\n");
+    printf("5. Кофе (+1 Энергия)\n");
 
     char choice = getchar();
     if (choice == '1') {
-        player->energy += 5;
+        player->hunger += 5;
 
     } else if (choice == '2') {
-        player->energy += 7;
+        player->hunger += 7;
     
     }
      else if (choice == '3') {
-        player->energy += 12;
+        player->hunger += 12;
 
     }
      else if (choice == '4') {
-        player->energy += 7;
+        player->hunger += 7;
+    }
+     else if (choice == '5') {
+        player->energy += 1;
     }
 return 0;
 }
@@ -441,7 +445,7 @@ void moveV(char **map, int width, int height, Player *player) {
                 }
                 if (newX == player->x && newY == player->y) {
                     player->energy -= 10.0;
-                    player->hunger -= 10.0;
+                    player->hunger -= 5.0;
                     player->mental -= 10.0;
                 }
                 if (newX >= 0 && newX < width && newY >= 0 && newY < height && map[newY][newX] == ' ' || map[newY][newX] == '#'|| map[newY][newX] == '9' || map[newY][newX] == 'L' || map[newY][newX] == 'I' || map[newY][newX] == 'F' || map[newY][newX] == 'T'|| map[newY][newX] == 'V') {
@@ -463,8 +467,8 @@ int main() {
     for (int i = 0; i < height; i++) {
         map[i] = (char *)malloc(width * sizeof(char));
     }
-    system("resize -s 64 190");
-    Player player = {1, 1, 100.0, 100.0, 95.0, 1, 9, 00, 0};
+    //system("resize -s 64 190");
+    Player player = {1, 1, 100.0, 100.0, 95.0, 1, 9, 00, 100};
 
     snprintf(filename, sizeof(filename), "map%d.txt", currentMap + 1);
     loadMapFromFile(map, width, height, filename, &player);
