@@ -169,23 +169,31 @@ void drawMap(char **map, int width, int height, Player *player) {
     }
 }
 
-// холодильник
-void displayFridgeMenu(Player *player) {
-    const char *foodNames[] = {"Яблоко", "Пицца", "Суп", "Салат"};
-    const int foodValues[] = {2, 3, 1, 1};
+///ХОЛОДИЛЬНИК///
+int displayFridgeMenu(Player *player) {
 
-    printf("\nВыбери еду из холодильника:\n");
-    for (int i = 0; i < sizeof(foodNames) / sizeof(foodNames[0]); i++) {
-        printf("%d. %s (+%d Сытость)\n", i + 1, foodNames[i], foodValues[i]);
-    }
+    printf("\nВыбери еду:\n");
+    printf("1. Яблоко (+5 Энергия)\n");
+    printf("2. Пицца (+7 Энергия)\n");
+    printf("3. Суп (+12 Энергия)\n");
+    printf("4. Салат (+7 Энергия)\n");
 
-    char choiceStr[2];
-    scanf("%1s", choiceStr);
-    int choice = atoi(choiceStr);
-    if (choice > 0 && choice <= sizeof(foodNames) / sizeof(foodNames[0])) {
-        player->hunger += foodValues[choice - 1];
-        if (player->hunger > MAX_STAT) player->hunger = MAX_STAT;
+    char choice = getchar();
+    if (choice == '1') {
+        player->energy += 5;
+
+    } else if (choice == '2') {
+        player->energy += 7;
+    
     }
+     else if (choice == '3') {
+        player->energy += 12;
+
+    }
+     else if (choice == '4') {
+        player->energy += 7;
+    }
+return 0;
 }
 
 ///КОМП///
@@ -194,7 +202,7 @@ int pcMenu(Player *player) {
         printf("Ты не можешь сейчас работать, ты устал..");
         return 0;}  
     
-    printf("\nChoose task for now:\n");
+    printf("\nВыбери задачу:\n");
     printf("1. Сегодняшний проект (+2 Знания, -6 Часов, -25 Энергия, от -1 до -6 Менталочка)\n");
     printf("2. Послушать лекцию (+1 Знания, -10 Энергия, -2 Менталочка)\n");
 
@@ -224,7 +232,7 @@ int lectureMenu(Player *player) {
         printf("Ты не можешь сейчас слушать лекцию, ты устал..");
         return 0;}   
     
-    printf("\nChoose task for now:\n");
+    printf("\nВыбери действие:\n");
     printf("1. Слушать лекцию (+1 Знания,-30 минут, -10 Энергия)\n");
 
 
@@ -255,7 +263,7 @@ int speakMenu(Player *player) {
         printf("Ты не можешь сейчас провести лекцию, ты устал..");
         return 0;}   
     
-    printf("\nChoose task for now:\n");
+    printf("\nВыбери действие:\n");
     printf("1. Провести лекцию (-30 минут, -20 Энергия)\n");
 
 
@@ -285,7 +293,7 @@ int peerMenu(Player *player) {
         printf("Ты не можешь сейчас разговаривать с пиром, ты устал..");
         return 0;}   
     
-    printf("\nChoose task for now:\n");
+    printf("\nВыбери действие:\n");
     printf("1. Поговорить (-5 минут, -10 Энергия, +1 или -1 Менталочка, +1 или +0 Знания)\n");
 
 
@@ -555,7 +563,7 @@ int main() {
                 drawGameOverScreen();
                 break;}
             player.energy -= 0.02;
-            player.hunger -= 0.1;
+            player.hunger -= 2.0;
             if (player.min < 59 ) {player.min += 1;}
             else {player.hour += 1;
             player.min = 0;}
@@ -577,4 +585,3 @@ int main() {
 
     return 0;
 }
-
