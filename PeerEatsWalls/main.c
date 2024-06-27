@@ -467,8 +467,8 @@ int main() {
     for (int i = 0; i < height; i++) {
         map[i] = (char *)malloc(width * sizeof(char));
     }
-    //system("resize -s 64 190");
-    Player player = {1, 1, 100.0, 100.0, 95.0, 1, 9, 00, 100};
+
+    Player player = {1, 1, 100.0, 100.0, 95.0, 1, 9, 00, 0};
 
     snprintf(filename, sizeof(filename), "map%d.txt", currentMap + 1);
     loadMapFromFile(map, width, height, filename, &player);
